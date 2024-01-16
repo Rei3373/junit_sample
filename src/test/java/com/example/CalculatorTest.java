@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CalculatorTest {
@@ -75,5 +76,18 @@ class CalculatorTest {
         boolean actual = sut.isOdd(param);
         boolean expected = true;
         assertThat(actual).isEqualTo(expected);
+    }
+    
+    @ParameterizedTest
+    // 1度のメソッド実行の度に複数のパラメータを渡す
+    @CsvSource({
+	     "6,3,2.0",
+	     "5,3,1.6666666666666667",
+	     "0,5,0.0"})
+    // カンマ区切りの文字列をカンマで分解し、左から順に引数にセットする
+    // 1つ目のパラメータでテストされるときxには6, yには3, expectedには2.0がセットされる
+    public void 一度に複数のパラメータを扱う(int x, int y, double expected ) {
+    	double actual = sut.devide(x, y);
+    	assertThat(actual).isEqualTo(expected);
     }
 }

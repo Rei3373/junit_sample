@@ -6,9 +6,10 @@ public class Calculator {
         return x * y;
     }
     
-    // 除算結果を返します
-    public int devide(int x, int y) {
-        return x / y;
+    // 返り値を修正します
+    public double devide(int x, int y) {
+        // キャスト処理を追加します
+        return (double)x / (double)y;
     }
 
     // 加算結果を返します
